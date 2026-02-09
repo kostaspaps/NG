@@ -18,7 +18,7 @@ _TEXT = "#e0e0e0"
 _TEXT_DIM = "#8a8a9a"
 _BTN_BG = "#0f3460"
 _BTN_BG_HOVER = "#1a4a7a"
-_WARNING = "#e74c3c"
+_WARNING = "#f0a500"
 _GREEN = "#2ecc71"
 _RED = "#e74c3c"
 _SEPARATOR = "#2a2a4e"
@@ -97,8 +97,8 @@ class CoachPopup:
         root.configure(bg=_BG)
         root.resizable(False, False)
 
-        # Geometry — 380x520, top-right corner of the primary screen.
-        w, h = 380, 520
+        # Geometry — 520x680, top-right corner of the primary screen.
+        w, h = 520, 680
         screen_w = root.winfo_screenwidth()
         x = screen_w - w - 24
         y = 40
@@ -110,12 +110,12 @@ class CoachPopup:
 
         style.configure(
             "Alt.TButton",
-            font=("Helvetica", 10),
+            font=("Helvetica", 13),
             background=_BTN_BG,
             foreground=_TEXT,
             borderwidth=0,
             focuscolor="",
-            padding=(8, 4),
+            padding=(10, 6),
         )
         style.map(
             "Alt.TButton",
@@ -133,7 +133,7 @@ class CoachPopup:
         container.pack(fill="both", expand=True, padx=1, pady=1)
 
         # 1. Title bar ───────────────────────────────────────────────────────
-        title_frame = tk.Frame(container, bg=_BG_ACCENT, height=32)
+        title_frame = tk.Frame(container, bg=_BG_ACCENT, height=38)
         title_frame.pack(fill="x")
         title_frame.pack_propagate(False)
 
@@ -141,7 +141,7 @@ class CoachPopup:
         self._title_label = tk.Label(
             title_frame,
             text=display_name,
-            font=("Helvetica", 12, "bold"),
+            font=("Helvetica", 14, "bold"),
             bg=_BG_ACCENT,
             fg=_TEXT,
             anchor="w",
@@ -162,7 +162,7 @@ class CoachPopup:
         self._status_label = tk.Label(
             status_frame,
             text="ON",
-            font=("Helvetica", 9),
+            font=("Helvetica", 11),
             bg=_BG_ACCENT,
             fg=_GREEN,
         )
@@ -172,7 +172,7 @@ class CoachPopup:
         close_btn = tk.Label(
             title_frame,
             text="\u2715",
-            font=("Helvetica", 13),
+            font=("Helvetica", 15),
             bg=_BG_ACCENT,
             fg=_TEXT_DIM,
             padx=8,
@@ -217,7 +217,7 @@ class CoachPopup:
         tk.Label(
             ol_frame,
             text="\U0001F4AC",
-            font=("Helvetica", 14),
+            font=("Helvetica", 16),
             bg=_BG,
             fg=_TEXT,
         ).pack(side="left", anchor="n", padx=(0, 6), pady=2)
@@ -225,12 +225,12 @@ class CoachPopup:
         self._one_liner_label = tk.Label(
             ol_frame,
             text="Waiting for suggestions\u2026",
-            font=("Helvetica", 13, "bold"),
+            font=("Helvetica", 16, "bold"),
             bg=_BG,
             fg=_TEXT,
             anchor="w",
             justify="left",
-            wraplength=320,
+            wraplength=460,
             cursor="hand2",
         )
         self._one_liner_label.pack(side="left", fill="x", expand=True)
@@ -245,7 +245,7 @@ class CoachPopup:
         tk.Label(
             rec_frame,
             text="Recommended:",
-            font=("Helvetica", 11, "bold"),
+            font=("Helvetica", 14, "bold"),
             bg=_BG,
             fg=_TEXT_DIM,
             anchor="w",
@@ -254,12 +254,12 @@ class CoachPopup:
         self._recommended_label = tk.Label(
             rec_frame,
             text="\u2014",
-            font=("Helvetica", 11),
+            font=("Helvetica", 16),
             bg=_BG,
             fg=_TEXT,
             anchor="w",
             justify="left",
-            wraplength=340,
+            wraplength=470,
             cursor="hand2",
         )
         self._recommended_label.pack(fill="x", pady=(2, 0))
@@ -271,7 +271,7 @@ class CoachPopup:
         alt_header = tk.Label(
             body,
             text="Alternatives:",
-            font=("Helvetica", 11, "bold"),
+            font=("Helvetica", 14, "bold"),
             bg=_BG,
             fg=_TEXT_DIM,
             anchor="w",
@@ -302,7 +302,7 @@ class CoachPopup:
         tk.Label(
             nq_frame,
             text="Next Q:",
-            font=("Helvetica", 11, "bold"),
+            font=("Helvetica", 14, "bold"),
             bg=_BG,
             fg=_TEXT_DIM,
             anchor="w",
@@ -311,12 +311,12 @@ class CoachPopup:
         self._next_q_label = tk.Label(
             nq_frame,
             text="\u2014",
-            font=("Helvetica", 11),
+            font=("Helvetica", 16),
             bg=_BG,
             fg=_TEXT,
             anchor="w",
             justify="left",
-            wraplength=340,
+            wraplength=470,
             cursor="hand2",
         )
         self._next_q_label.pack(fill="x", pady=(2, 0))
@@ -331,7 +331,7 @@ class CoachPopup:
         tk.Label(
             warn_frame,
             text="Warnings:",
-            font=("Helvetica", 11, "bold"),
+            font=("Helvetica", 14, "bold"),
             bg=_BG,
             fg=_WARNING,
             anchor="w",
@@ -340,12 +340,12 @@ class CoachPopup:
         self._warnings_label = tk.Label(
             warn_frame,
             text="\u2014",
-            font=("Helvetica", 11),
+            font=("Helvetica", 14),
             bg=_BG,
             fg=_WARNING,
             anchor="w",
             justify="left",
-            wraplength=340,
+            wraplength=470,
         )
         self._warnings_label.pack(fill="x", pady=(2, 0))
 
@@ -353,7 +353,7 @@ class CoachPopup:
         self._copied_label = tk.Label(
             self.root,
             text="Copied!",
-            font=("Helvetica", 10, "bold"),
+            font=("Helvetica", 13, "bold"),
             bg=_COPIED_BG,
             fg="#ffffff",
             padx=10,

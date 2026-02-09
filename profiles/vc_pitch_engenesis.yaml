@@ -1,0 +1,106 @@
+id: vc_pitch_engenesis
+name: "VC Pitch — Engenesis Ventures (Ariya Chittasy)"
+mode: VC_PITCH
+
+goals:
+  primary: "Get accepted into Engenesis Ventures portfolio or partnership program"
+  secondary:
+    - "Position Lupe as a scalable tech venture, not a services business"
+    - "Demonstrate product-market fit traction and clear growth trajectory"
+    - "Explore whether their venture builder model (services + equity) fits our needs"
+
+constraints:
+  do_not_reveal:
+    - "Exact pilot pricing unless directly asked"
+    - "Weaknesses in customer pipeline"
+  do_not_commit:
+    - "Equity terms or percentages without reviewing their standard deal structure"
+    - "Using their tech/dev services if we don't need them — we have strong technical founders"
+    - "Any fee-for-service engagement without understanding ROI"
+
+tone:
+  default: "calm, sharp, confident — founder-to-founder energy"
+  if_skeptical: "evidence-based, show traction numbers, no defensiveness"
+  if_aggressive: "firm, polite, redirect to product differentiation and market size"
+
+key_points:
+  - "We're building the analytics infrastructure that big mobile publishers have in-house — for everyone else"
+  - "Warehouse-native, no data movement: lower cost, better security, user-level granularity"
+  - "Domain knowledge woven into the data models, not just a generic BI tool"
+  - "AI agents that surface insights and recommend actions — not just dashboards"
+  - "Clear DACH beachhead with a globally relevant product (mobile app economy is borderless)"
+  - "Two complementary founders covering business, product, full-stack, data, and ML"
+  - "Pilot with active customer, second onboarding, third in pipeline"
+  - "Target €30K MRR by July"
+
+narrative_elevator_pitch: |
+  Mobile developers spend millions on user acquisition across Facebook, TikTok,
+  and Applovin — but they're flying blind. Campaign data is fragmented across
+  platforms, reporting is manual, and by the time insights surface, budgets have
+  already been wasted.
+
+  Big companies like Supercell or King solve this with 10-person analytics teams
+  and custom infrastructure. Everyone else is stuck with spreadsheets and gut feel.
+
+  Lupe Analytics gives every mobile developer the analytics infrastructure of a
+  top publisher. We create a single source of truth directly in their data
+  warehouse — no data movement, no overhead. On top, we layer data models with
+  deep domain knowledge and AI that surfaces what's working, what's not, and
+  what to do next.
+
+  We're running a pilot with an active customer, just onboarded a second customer,
+  and have a third in our pipeline. Our target is €30K MRR by July.
+
+preferred_moves:
+  - "Ask calibrated questions about their venture builder model and what portfolio support looks like"
+  - "Use labeling/mirroring on objections"
+  - "Bridge back to traction, product differentiation, and global market opportunity"
+  - "Emphasize we're a product company with strong tech — we need distribution and network, not dev help"
+  - "Ask about their Genesis Framework and how it applies to data/analytics ventures"
+
+special_context:
+  venture_builder_model: |
+    Engenesis is NOT a traditional VC fund — they are a venture builder.
+    They operate on two models:
+    1. Equity participation: they take equity and provide hands-on building support
+    2. Fee-for-service: paid consulting/dev/marketing services ($3,900 AUD program)
+    Be clear about what WE need: likely their network, go-to-market support,
+    and investor introductions — NOT their tech/dev services (we have strong
+    technical co-founders). Frame it as partnership, not dependency.
+
+  investor_background: |
+    Ariya Chittasy is Director of Engenesis Ventures. Entrepreneur with 8 years
+    building 4 companies, led award-winning ventures in Asia-Pacific, scaled
+    teams from 4 to 70+ in under 2 years. Ashkan is CEO/founder of Engenesis
+    and the Being Profile, author of the BEING book — he brings an ontological
+    (personal transformation) angle to venture building. They emphasize founder
+    personal growth driving professional success.
+
+  fund_details: |
+    Sydney-based, operating in 45+ countries. Studied 3,200+ companies,
+    worked directly with 800+. Portfolio includes ventures in 53+ countries.
+    Notable exits: OneSend (acquired by ActiveCampaign), Price My Car
+    (acquired by CarExpert.com.au). They have the Genesis Framework —
+    an ontological venture building methodology. Focus on MVP-stage startups
+    and growth-stage scaleups.
+
+  portfolio_context: |
+    Current portfolio includes Xeali (business management for coaches/consultants),
+    Frank Food Safety Systems (IoT food safety), D-Risk (FinTech AI for
+    investment banking). No direct competitor to Lupe in their portfolio —
+    we'd be their first marketing analytics / data infrastructure venture.
+    This is an opportunity: we bring a new vertical they don't have.
+
+  questions_for_ariya:
+    - "You've worked with 800+ startups — what patterns do you see in the ones that break through from MVP to scale?"
+    - "How does the equity participation model work in practice? What does a typical partnership look like?"
+    - "Your portfolio spans 53+ countries. For a B2B product targeting mobile developers, what go-to-market approach has worked best?"
+    - "The Genesis Framework sounds interesting. How does it apply to deep-tech / data-intensive ventures like ours?"
+    - "What's the most common mistake you see European founders make when expanding beyond their home market?"
+
+  tough_question_responses:
+    why_not_self_funded: "We are revenue-focused — the pilot is our #1 priority. But the right partner accelerates go-to-market and opens doors that would take us 12+ months to open alone."
+    services_vs_product: "Everything is productized. We deploy standardized data models directly into customer warehouses — same playbook every time. The AI layer is the same for every customer. This scales like software, not services."
+    small_team: "Two founders covering business, product, full-stack, data, and ML. We've built in 6 months what would take a 5-person team a year. We're looking for a partner to accelerate distribution, not engineering."
+    why_engenesis: "Your global network across 45+ countries and hands-on venture building experience is exactly what we need to go from DACH to global. Plus, no one in your portfolio does what we do — we'd be a new vertical."
+    european_market: "DACH is our beachhead — Germany is growing fastest in Europe at 18.5% CAGR for marketing analytics. But mobile UA is inherently global. The product works anywhere there are app developers spending on campaigns."

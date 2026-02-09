@@ -62,7 +62,7 @@ class WhisperContext:
         audio_capture,
         model_size: str = "small",
         window_seconds: float = 12.0,
-        interval: float = 1.5,
+        interval: float = 0.5,
         energy_threshold: float = _DEFAULT_ENERGY_THRESHOLD,
         language: str = "en",
     ):
