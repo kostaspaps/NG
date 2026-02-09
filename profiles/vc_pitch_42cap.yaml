@@ -1,0 +1,88 @@
+id: vc_pitch_42cap
+name: "VC Pitch — 42CAP (Julian von Fischer)"
+mode: VC_PITCH
+
+goals:
+  primary: "Get to next meeting + secure interest from 42CAP"
+  secondary:
+    - "Position Lupe as category-defining analytics infrastructure"
+    - "Create urgency without sounding desperate"
+
+constraints:
+  do_not_reveal:
+    - "Exact pilot pricing unless directly asked"
+    - "Weaknesses in customer pipeline"
+  do_not_commit:
+    - "Custom features without timeline review"
+
+tone:
+  default: "calm, sharp, confident"
+  if_skeptical: "curious, evidence-based, no defensiveness"
+  if_aggressive: "firm, polite, boundary-setting"
+
+key_points:
+  - "We're building the analytics infrastructure that big mobile publishers have in-house — for everyone else"
+  - "Warehouse-native, no data movement: lower cost, better security, user-level granularity"
+  - "Domain knowledge woven into the data models, not just a generic BI tool"
+  - "Clear DACH beachhead with a globally relevant product (mobile app economy is borderless)"
+  - "Two complementary founders covering business, product, full-stack, data, and ML"
+  - "Pilot with active customer, second onboarding, third in pipeline"
+  - "Target €30K MRR by July"
+
+narrative_elevator_pitch: |
+  Mobile developers spend millions on user acquisition across Facebook, TikTok,
+  and Applovin — but they're flying blind. Campaign data is fragmented across
+  platforms, reporting is manual, and by the time insights surface, budgets have
+  already been wasted.
+
+  Big companies like Supercell or King solve this with 10-person analytics teams
+  and custom infrastructure. Everyone else is stuck with spreadsheets and gut feel.
+
+  Lupe Analytics gives every mobile developer the analytics infrastructure of a
+  top publisher. We create a single source of truth directly in their data
+  warehouse — no data movement, no overhead. On top, we layer data models with
+  deep domain knowledge and AI that surfaces what's working, what's not, and
+  what to do next.
+
+  We're running a pilot with an active customer, just onboarded a second customer,
+  and have a third in our pipeline. Our target is €30K MRR by July.
+
+preferred_moves:
+  - "Ask calibrated questions to uncover decision process"
+  - "Use labeling/mirroring on objections"
+  - "Bridge back to traction and next steps"
+  - "Proactively raise Adverity differentiation before Julian does"
+
+special_context:
+  adverity_differentiation: |
+    42CAP has Adverity in their portfolio. When this comes up:
+    "Adverity solves the data plumbing problem — getting marketing data into
+    one place. We start where they stop. Lupe works directly in the customer's
+    warehouse with user-level data, adds a semantic layer with domain-specific
+    models, and uses AI to surface the insights that actually drive campaign
+    decisions. We're complementary, not competitive."
+
+  investor_background: |
+    Julian von Fischer is a founder-turned-VC. He co-founded Karlsson (digital
+    health insurance, Munich), went through WERK1 and Xpreneurs, then shut it
+    down. He values authenticity and directness — he wrote that most startup
+    advice "is not honest enough." His Novee AI deal (AI for insurance
+    underwriting) shows he invests in domain-specific AI. KPMG Financial
+    Services background means he appreciates data rigor and ROI clarity.
+
+  fund_details: |
+    42CAP Fund IV. Seed check size €0.5–3M. Focus: B2B Software, Data-Driven,
+    AI/ML. Europe with global ambition. ~20 companies, concentrated bets.
+    Target €500M+ valuation in 7–8 years.
+
+  questions_for_julian:
+    - "The 42CAP partners built eCircle and ran Teradata's Marketing Cloud. How does the team see the MarTech landscape evolving around user-level analytics?"
+    - "With Adverity in the portfolio, do you see an opportunity in the intelligence layer on top of data integration?"
+    - "Your conversion rate to Series A is close to 100%. What do you look for at seed to build that confidence?"
+    - "You founded Karlsson and went through WERK1 — what's the most important lesson you took into investing?"
+
+  tough_question_responses:
+    runway_question: "We are focused on revenue — the pilot is our #1 priority. But we're also having smart conversations with investors who understand the space."
+    valuation_question: "Marketing analytics is a €12B market by 2030. If we nail warehouse-native + AI for mobile, expansion into e-commerce, gaming, and fintech apps is natural."
+    unfair_advantage: "Deep domain expertise in mobile UA + technical depth (Snowflake, dbt, multi-agent AI). We've built what would take a competitor 6-12 months to replicate."
+    why_now: "Privacy changes (ATT, SKAdNetwork) broke traditional attribution. Companies are rebuilding analytics around first-party, user-level data — exactly what we enable."

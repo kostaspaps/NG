@@ -16,3 +16,10 @@ models/
 # IDE
 .vscode/
 .idea/
+
+# LLM Bridge (local workflow orchestration)
+llm-bridge
+.llm-bridge
+.claude
+zeus-progress.md
+zeus-runs/
