@@ -1,0 +1,43 @@
+id: vc_pitch_lupe
+name: "VC Pitch — Lupe Analytics"
+mode: VC_PITCH
+
+goals:
+  primary: "Get to next meeting + secure interest"
+  secondary:
+    - "Position as category-defining analytics infra"
+    - "Create urgency without sounding desperate"
+
+constraints:
+  do_not_reveal:
+    - "Exact pilot pricing unless asked"
+    - "Weaknesses in pipeline"
+  do_not_commit:
+    - "Custom features without timeline review"
+
+tone:
+  default: "calm, sharp, confident"
+  if_skeptical: "curious, evidence-based, no defensiveness"
+  if_aggressive: "firm, polite, boundary-setting"
+
+key_points:
+  - "Mobile UA data is fragmented; insights arrive too late"
+  - "Big publishers solve with big analytics teams; others stuck with spreadsheets"
+  - "Single source of truth in customer warehouse (no data movement)"
+  - "Domain models + AI surfacing what works and what to do next"
+  - "Pilot with active customer, second onboarded, third in pipeline"
+  - "Target €30K MRR by July"
+
+narrative_elevator_pitch: |
+  Mobile developers spend millions on UA across Facebook, TikTok, Applovin —
+  but they're flying blind. Campaign data is fragmented, reporting is manual,
+  and by the time insights surface, budgets are wasted.
+
+  Lupe Analytics gives every mobile developer the analytics infrastructure of a
+  top publisher. Single source of truth in their warehouse, domain-specific
+  models, and AI that tells them what's working and what to do next.
+
+preferred_moves:
+  - "Ask calibrated questions to uncover decision process"
+  - "Use labeling/mirroring on objections"
+  - "Bridge back to traction + next steps"
