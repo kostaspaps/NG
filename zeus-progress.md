@@ -20,4 +20,4 @@
 - [x] Verify all Python files compile cleanly (py_compile)
 - [x] Test integration — all Python files compile clean, coach smoke tests pass, zero persistence verified (no open() in write mode)
 - [x] No test runner found (no pytest/npm/make config exists)
-- [ ] Commit all changes
+- [x] Commit all changes — 14 files, 1868 insertions, commit 386f3fd on feat/mvp-milestone-a
