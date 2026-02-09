@@ -104,6 +104,26 @@ class CoachPopup:
         y = 40
         root.geometry(f"{w}x{h}+{x}+{y}")
 
+        # Hide from screen sharing / screen recording (macOS).
+        self._apply_screen_sharing_protection()
+
+    def _apply_screen_sharing_protection(self) -> None:
+        """Make the window invisible to screen sharing and screen recording.
+
+        Uses macOS NSWindow.setSharingType_(NSWindowSharingNone).
+        The window appears as a black rectangle to anyone viewing a shared screen.
+        Falls back silently on non-macOS or if PyObjC is unavailable.
+        """
+        try:
+            from AppKit import NSApp
+            # Must call update so Tk creates the underlying NSWindow first.
+            self.root.update_idletasks()
+            for ns_window in NSApp.windows():
+                ns_window.setSharingType_(0)  # NSWindowSharingNone = 0
+            print("[NG] Screen sharing protection: ON")
+        except Exception:
+            print("[NG] Screen sharing protection: unavailable (PyObjC not installed)")
+
     def _setup_styles(self) -> None:
         style = ttk.Style(self.root)
         style.theme_use("clam")
