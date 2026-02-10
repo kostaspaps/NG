@@ -15,7 +15,6 @@ from __future__ import annotations
 import collections
 import logging
 import platform
-import struct
 import threading
 from typing import Optional
 
@@ -46,8 +45,8 @@ try:
 
     import ScreenCaptureKit as SCK  # pyobjc-framework-ScreenCaptureKit
     import CoreMedia  # pyobjc-framework-Quartz includes CoreMedia
-    import objc
     from Foundation import NSObject
+    import dispatch  # pyobjc-core includes libdispatch bindings
 
     _SCK_AVAILABLE = True
 except ImportError as _import_err:
@@ -59,6 +58,7 @@ except ImportError as _import_err:
 # ---------------------------------------------------------------------------
 TARGET_RATE: int = 16000        # Whisper expects 16 kHz
 MAX_SECONDS: int = 30           # ring buffer capacity
+_AUDIO_OUTPUT_TYPE: int = 1     # SCStreamOutputType.audio
 
 
 class SystemAudioCaptureError(Exception):
@@ -144,26 +144,22 @@ class SystemAudioCapture:
         # Wait up to 30 seconds for user to grant permission
         if not content_ready.wait(timeout=30.0):
             self._permission_denied = True
-            logger.warning(
-                "Timed out waiting for Screen Recording permission. "
-                "System audio capture disabled."
+            raise SystemAudioCaptureError(
+                "Timed out waiting for Screen Recording permission"
             )
-            return
 
         if content_error[0] is not None:
             self._permission_denied = True
-            logger.warning(
-                "Screen Recording permission denied or error: %s. "
-                "System audio capture disabled.",
-                content_error[0],
+            raise SystemAudioCaptureError(
+                f"Screen Recording permission denied or error: {content_error[0]}"
             )
-            return
 
         content = shareable_content[0]
         if content is None:
             self._permission_denied = True
-            logger.warning("No shareable content returned. System audio disabled.")
-            return
+            raise SystemAudioCaptureError(
+                "No shareable content returned"
+            )
 
         try:
             self._start_stream(content)
@@ -204,15 +200,22 @@ class SystemAudioCapture:
             content_filter, config, None
         )
 
-        # Add stream output for audio
-        error = [None]
-        # SCStreamOutputType.screen = 0, .audio = 1
-        stream.addStreamOutput_type_sampleHandlerQueue_error_(
+        # Create a dedicated serial dispatch queue for audio callbacks
+        audio_queue = dispatch.dispatch_queue_create(
+            b"com.lupe.ng.systemaudio", None
+        )
+
+        # Add stream output for audio; check for registration error
+        success, reg_error = stream.addStreamOutput_type_sampleHandlerQueue_error_(
             self._delegate,
-            1,  # SCStreamOutputType.audio
-            None,  # use default queue
+            _AUDIO_OUTPUT_TYPE,
+            audio_queue,
             None,
         )
+        if not success or reg_error is not None:
+            raise SystemAudioCaptureError(
+                f"Failed to register stream output: {reg_error}"
+            )
 
         # Start the stream (async with completion handler)
         start_ready = threading.Event()
@@ -335,10 +338,24 @@ class SystemAudioCapture:
             if length == 0:
                 return
 
-            data_bytes = bytes(length)
-            CoreMedia.CMBlockBufferCopyDataBytes(
-                block_buffer, 0, length, data_bytes
+            # PyObjC returns (OSStatus, buffer) tuple from CMBlockBufferCopyDataBytes
+            result = CoreMedia.CMBlockBufferCopyDataBytes(
+                block_buffer, 0, length, None
             )
+            if isinstance(result, tuple):
+                status, raw_data = result
+            else:
+                # Fallback if PyObjC returns just a status
+                status = result
+                raw_data = None
+
+            if status != 0:
+                logger.warning("CMBlockBufferCopyDataBytes failed with status %d", status)
+                return
+            if raw_data is None:
+                return
+
+            data_bytes = bytes(raw_data)
 
             # Get the format description to determine sample rate and format
             fmt_desc = CoreMedia.CMSampleBufferGetFormatDescription(sample_buffer)
@@ -347,28 +364,62 @@ class SystemAudioCapture:
                 audio = np.frombuffer(data_bytes, dtype=np.float32)
             else:
                 # Get the basic audio description
+                # PyObjC may return the ASBD as a struct or as a tuple:
+                # (mSampleRate, mFormatID, mFormatFlags, mBytesPerPacket,
+                #  mFramesPerPacket, mBytesPerFrame, mChannelsPerFrame,
+                #  mBitsPerChannel, mReserved)
                 asbd = CoreMedia.CMAudioFormatDescriptionGetStreamBasicDescription(
                     fmt_desc
                 )
                 if asbd is not None:
-                    source_rate = int(asbd.mSampleRate)
-                    channels = int(asbd.mChannelsPerFrame)
-                    bits = int(asbd.mBitsPerChannel)
+                    if isinstance(asbd, tuple):
+                        source_rate = int(asbd[0])
+                        format_flags = int(asbd[2])
+                        channels = int(asbd[6])
+                        bits = int(asbd[7])
+                    else:
+                        source_rate = int(asbd.mSampleRate)
+                        channels = int(asbd.mChannelsPerFrame)
+                        bits = int(asbd.mBitsPerChannel)
+                        format_flags = int(asbd.mFormatFlags)
 
-                    # Parse based on format
-                    if bits == 32:
+                    # CoreAudio format flag constants
+                    kAudioFormatFlagIsFloat = 1 << 0           # 0x1
+                    kAudioFormatFlagIsSignedInteger = 1 << 2   # 0x4
+                    kAudioFormatFlagIsNonInterleaved = 1 << 5  # 0x20
+
+                    is_float = bool(format_flags & kAudioFormatFlagIsFloat)
+                    is_non_interleaved = bool(format_flags & kAudioFormatFlagIsNonInterleaved)
+
+                    # Parse based on format flags and bit depth
+                    if is_float and bits == 32:
                         audio = np.frombuffer(data_bytes, dtype=np.float32)
+                    elif is_float and bits == 64:
+                        audio = np.frombuffer(data_bytes, dtype=np.float64).astype(np.float32)
                     elif bits == 16:
                         audio = np.frombuffer(data_bytes, dtype=np.int16).astype(
                             np.float32
                         ) / 32768.0
+                    elif bits == 32:
+                        # 32-bit signed integer PCM
+                        audio = np.frombuffer(data_bytes, dtype=np.int32).astype(
+                            np.float32
+                        ) / 2147483648.0
                     else:
                         # Fallback: try float32
+                        logger.warning(
+                            "Unknown audio format: bits=%d flags=0x%x, trying float32",
+                            bits, format_flags,
+                        )
                         audio = np.frombuffer(data_bytes, dtype=np.float32)
 
-                    # Convert to mono if stereo
-                    if channels > 1:
+                    # Convert to mono if stereo (interleaved)
+                    if channels > 1 and not is_non_interleaved:
                         audio = audio.reshape(-1, channels).mean(axis=1)
+                    elif channels > 1 and is_non_interleaved:
+                        # Non-interleaved: take first channel only
+                        frames = len(audio) // channels
+                        audio = audio[:frames]
 
                     # Resample if not at target rate
                     if source_rate != TARGET_RATE and source_rate > 0:
@@ -394,7 +445,7 @@ class SystemAudioCapture:
                     self._total_samples -= len(removed)
 
         except Exception as exc:
-            logger.debug("Error processing audio buffer: %s", exc)
+            logger.warning("Error processing audio buffer: %s", exc)
 
     @staticmethod
     def _resample(audio: np.ndarray, source_rate: int, target_rate: int) -> np.ndarray:
@@ -443,7 +494,7 @@ if _SCK_AVAILABLE:
 
             output_type 1 = audio.
             """
-            if output_type != 1:  # Only process audio
+            if output_type != _AUDIO_OUTPUT_TYPE:  # Only process audio
                 return
             if self._parent is not None:
                 self._parent._handle_audio_buffer(sample_buffer)

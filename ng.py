@@ -86,7 +86,7 @@ class NGSession:
         print("[NG] Whisper context extraction started [YOU]")
 
         # 3b. Start Whisper for system audio (→ [THEM])
-        if self._system_audio is not None:
+        if self._system_audio is not None and self._system_audio.is_capturing:
             self._system_whisper = WhisperContext(
                 self._system_audio,
                 model_size=self._whisper_model,
