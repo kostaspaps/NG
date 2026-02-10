@@ -65,6 +65,7 @@ class WhisperContext:
         interval: float = 0.5,
         energy_threshold: float = _DEFAULT_ENERGY_THRESHOLD,
         language: str = "en",
+        label: str = "YOU",
     ):
         self._audio_capture = audio_capture
         self._model_size = model_size
@@ -72,6 +73,7 @@ class WhisperContext:
         self._interval = interval
         self._energy_threshold = energy_threshold
         self._language = language
+        self._label = label
 
         # Latest transcribed context string — overwritten each cycle.
         self._context: str = ""
@@ -181,8 +183,8 @@ class WhisperContext:
             logger.debug("Whisper returned empty transcription.")
             return
 
-        # 4. Format as labeled context string (mic = YOU for MVP).
-        context = f'[YOU]: "{text}"'
+        # 4. Format as labeled context string.
+        context = f'[{self._label}]: "{text}"'
 
         # 5. Atomically overwrite the stored context.
         with self._lock:

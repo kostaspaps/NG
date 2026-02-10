@@ -9,9 +9,12 @@ pyaudio = ">=0.2.14"
 pyyaml = ">=6.0"
 numpy = ">=1.24.0"
 pyobjc-framework-cocoa = "*"
+pyobjc-framework-screencapturekit = "*"
+pyobjc-framework-avfoundation = "*"
+pyobjc-framework-coremedia = "*"
+pyobjc-framework-libdispatch = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.11"
-python_full_version = "3.11.13"
