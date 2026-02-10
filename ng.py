@@ -18,16 +18,25 @@ from whisper_ctx import WhisperContext
 from coach import CoachAgent, read_profile, compile_prompt
 from popup import CoachPopup
 
+try:
+    from system_audio import SystemAudioCapture
+except ImportError:
+    SystemAudioCapture = None
+
 
 class NGSession:
     """Manages the full lifecycle of a negotiation coaching session."""
 
-    def __init__(self, profile_path: str, whisper_model: str = "small"):
+    def __init__(self, profile_path: str, whisper_model: str = "small",
+                 no_system_audio: bool = False):
         self._profile_path = profile_path
         self._whisper_model = whisper_model
+        self._no_system_audio = no_system_audio
 
         self._audio: AudioCapture | None = None
         self._whisper: WhisperContext | None = None
+        self._system_audio = None  # SystemAudioCapture | None
+        self._system_whisper: WhisperContext | None = None
         self._coach: CoachAgent | None = None
         self._popup: CoachPopup | None = None
 
@@ -45,20 +54,48 @@ class NGSession:
         print(f"[NG] Profile loaded: {profile_name}")
         print(f"[NG] Whisper model: {self._whisper_model}")
 
-        # 2. Start audio capture
+        # 2. Start audio capture (mic)
         self._audio = AudioCapture()
         self._audio.start_capture()
-        print("[NG] Audio capture started")
+        print("[NG] Mic audio capture started")
 
-        # 3. Start Whisper context extraction
+        # 2b. Start system audio capture (if available and not disabled)
+        if not self._no_system_audio and SystemAudioCapture is not None:
+            try:
+                self._system_audio = SystemAudioCapture()
+                self._system_audio.start_capture()
+                print("[NG] System audio capture started (ScreenCaptureKit)")
+            except Exception as exc:
+                print(f"[NG] System audio unavailable: {exc}")
+                print("[NG] Continuing with mic-only capture")
+                self._system_audio = None
+        elif self._no_system_audio:
+            print("[NG] System audio disabled (--no-system-audio)")
+        else:
+            print("[NG] System audio unavailable (ScreenCaptureKit not installed)")
+
+        # 3. Start Whisper context extraction (mic → [YOU])
         self._whisper = WhisperContext(
             self._audio,
             model_size=self._whisper_model,
             window_seconds=12,
             interval=0.5,
+            label="YOU",
         )
         self._whisper.start()
-        print("[NG] Whisper context extraction started")
+        print("[NG] Whisper context extraction started [YOU]")
+
+        # 3b. Start Whisper for system audio (→ [THEM])
+        if self._system_audio is not None:
+            self._system_whisper = WhisperContext(
+                self._system_audio,
+                model_size=self._whisper_model,
+                window_seconds=12,
+                interval=0.5,
+                label="THEM",
+            )
+            self._system_whisper.start()
+            print("[NG] Whisper context extraction started [THEM]")
 
         # 4. Create coach agent
         self._coach = CoachAgent(system_prompt)
@@ -85,12 +122,14 @@ class NGSession:
         """Background loop: context → coach → popup updates."""
         while self._running:
             try:
-                context = self._whisper.get_context() if self._whisper else ""
+                mic_ctx = self._whisper.get_context() if self._whisper else ""
+                sys_ctx = self._system_whisper.get_context() if self._system_whisper else ""
+                context = "\n".join(filter(None, [mic_ctx, sys_ctx]))
 
                 # Only send to coach if context has changed and is non-empty
                 if context and context != self._last_context:
                     self._last_context = context
-                    print(f"[NG] Context: {context[:80]}...")
+                    print(f"[NG] Context: {context[:120]}...")
 
                     suggestions = self._coach.send_context(context)
 
@@ -112,17 +151,29 @@ class NGSession:
         print("\n[NG] Shutting down...")
         self._running = False
 
-        # Stop whisper
+        # Stop system whisper (before system audio)
+        if self._system_whisper:
+            self._system_whisper.stop()
+            self._system_whisper = None
+            print("[NG] System whisper stopped [THEM]")
+
+        # Stop system audio capture
+        if self._system_audio:
+            self._system_audio.stop_capture()
+            self._system_audio = None
+            print("[NG] System audio capture stopped")
+
+        # Stop mic whisper
         if self._whisper:
             self._whisper.stop()
             self._whisper = None
-            print("[NG] Whisper stopped")
+            print("[NG] Whisper stopped [YOU]")
 
-        # Stop audio capture
+        # Stop mic audio capture
         if self._audio:
             self._audio.stop_capture()
             self._audio = None
-            print("[NG] Audio capture stopped")
+            print("[NG] Mic audio capture stopped")
 
         # Kill coach agent
         if self._coach:
@@ -171,6 +222,11 @@ def main():
         default=None,
         help="Model name for Ollama engine (e.g., llama3:8b)",
     )
+    parser.add_argument(
+        "--no-system-audio",
+        action="store_true",
+        help="Disable system audio capture (mic only)",
+    )
 
     args = parser.parse_args()
 
@@ -185,6 +241,7 @@ def main():
     session = NGSession(
         profile_path=profile_path,
         whisper_model=args.whisper_model,
+        no_system_audio=args.no_system_audio,
     )
 
     # Handle Ctrl+C gracefully

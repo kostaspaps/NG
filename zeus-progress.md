@@ -1,23 +1,16 @@
-# Implement MVP Milestone A — Mic Capture + Whisper + Claude CLI + Popup
-**Started:** 2026-02-09 22:51
-**Branch:** feat/mvp-milestone-a
+# Milestone B — Dual Audio Capture (Mic + System Audio via ScreenCaptureKit)
+**Started:** 2026-02-10 10:30
+**Branch:** feat/dual-audio-capture
 **Template:** full
 
 ## Progress
 
-- [x] Read ng.md and 42cap prep.md specs — full understanding of requirements
-- [x] Create requirements.txt — faster-whisper, pyaudio, pyyaml, numpy
-- [x] Create profiles/vc_pitch_42cap.yaml — 42CAP pitch profile with investor context, Adverity differentiation, tough Q responses
-- [x] Create profiles/vc_pitch_lupe.yaml — generic Lupe Analytics VC pitch profile
-- [x] Create audio.py — mic capture with thread-safe ring buffer, 16kHz mono PCM, get_audio_window() returns float32 numpy
-- [x] Create whisper_ctx.py — faster-whisper with Silero VAD gating, background thread, sliding 12s window every 1.5s
-- [x] Create coach.py — read_profile, compile_prompt, CoachAgent (claude -p --output-format json), robust parse_response
-- [x] Create popup.py — frameless tkinter overlay, dark theme, draggable, thread-safe updates, click-to-copy
-- [x] Create ng.py — main orchestrator with CLI args, pipeline orchestration, graceful shutdown
-- [x] Fix popup.py alternatives format — convert list-of-dicts from coach to dict for button lookup
-- [x] Create CONTEXT.md and profiles/PROFILES_CONTEXT.md
-- [x] Create summary_changes.md
-- [x] Verify all Python files compile cleanly (py_compile)
-- [x] Test integration — all Python files compile clean, coach smoke tests pass, zero persistence verified (no open() in write mode)
-- [x] No test runner found (no pytest/npm/make config exists)
-- [x] Commit all changes — 14 files, 1868 insertions, commit 386f3fd on feat/mvp-milestone-a
+- [x] Read and understand all source files (audio.py, whisper_ctx.py, ng.py, coach.py, Pipfile, CONTEXT.md, ng.md)
+- [x] Update Pipfile — added pyobjc-framework-ScreenCaptureKit and pyobjc-framework-AVFoundation (Pipfile)
+- [x] Create system_audio.py — ScreenCaptureKit system audio capture module with identical API to AudioCapture (system_audio.py)
+- [x] Update whisper_ctx.py — added `label` parameter, replaced hardcoded `[YOU]` with `[{self._label}]` (whisper_ctx.py)
+- [x] Update ng.py — dual audio sources, merged context in coaching loop, --no-system-audio flag, graceful fallback (ng.py)
+- [x] Update coach.py — added dual-stream guidance text to compile_prompt() (coach.py)
+- [x] Verify no regressions — audio.py, popup.py, profiles/ unchanged; all syntax checks pass; no disk writes in system_audio.py
+- [x] No test suite found (no tests/ dir, no test_*.py files)
+- [x] Update CONTEXT.md and write summary_changes.md — updated CONTEXT.md to Milestone B state, appended Milestone B section to summary_changes.md

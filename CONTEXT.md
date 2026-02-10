@@ -20,8 +20,18 @@ audio.py  →  whisper_ctx.py  →  coach.py  →  popup.py
 ## Sub-context files
 - `profiles/PROFILES_CONTEXT.md` — profile schema and available profiles
 
-## Current state (Milestone A)
-- Mic-only capture (no system audio yet)
+## Current state (Milestone B)
+- Dual audio capture: mic (PyAudio) + system audio (ScreenCaptureKit, macOS 13+)
+- Two WhisperContext instances: mic → `[YOU]`, system audio → `[THEM]`
+- Merged context fed to coach: `[YOU]: "..." \n [THEM]: "..."`
+- `--no-system-audio` flag for mic-only fallback (identical to Milestone A)
+- Graceful degradation if ScreenCaptureKit unavailable (permission denied, macOS < 13, missing pyobjc)
 - Claude CLI engine only (no Ollama fallback yet)
 - Basic tkinter popup overlay
 - Two profiles: vc_pitch_42cap (42CAP-specific), vc_pitch_lupe (generic)
+
+### New module: system_audio.py
+- ScreenCaptureKit-based system audio capture
+- Same public API as audio.py's AudioCapture (drop-in for WhisperContext)
+- Ring buffer with linear-interpolation resampling to 16 kHz mono float32
+- Zero disk writes

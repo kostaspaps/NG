@@ -9,6 +9,8 @@ pyaudio = ">=0.2.14"
 pyyaml = ">=6.0"
 numpy = ">=1.24.0"
 pyobjc-framework-cocoa = "*"
+pyobjc-framework-ScreenCaptureKit = "*"
+pyobjc-framework-AVFoundation = "*"
 
 [dev-packages]
 

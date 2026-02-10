@@ -106,6 +106,9 @@ def compile_prompt(profile: dict) -> str:
 
     # Response format instructions.
     parts.append(
+        'The conversation context below includes labeled transcriptions. '
+        '[YOU] = the founder you are coaching. [THEM] = the other person on the call. '
+        'React to what THEY say — suggest responses, flag risks, and coach the founder in real-time.\n\n'
         'I will send you conversation context labeled [THEM] (the other party) and [YOU] (me).\n'
         'Focus your suggestions on how I should respond to what THEY are saying.\n'
         'Respond ONLY with a JSON object:\n'
