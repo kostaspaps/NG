@@ -5,8 +5,9 @@ mode: VC_PITCH
 goals:
   primary: "Get to next meeting + secure interest from 42CAP"
   secondary:
-    - "Position Lupe as category-defining analytics infrastructure"
+    - "Position Lupe as the AI Data Teammate replacing 10-person analytics teams"
     - "Create urgency without sounding desperate"
+    - "Land the message: deterministic AI on verified data, not another chatbot on SQL"
 
 constraints:
   do_not_reveal:
@@ -21,39 +22,86 @@ tone:
   if_aggressive: "firm, polite, boundary-setting"
 
 key_points:
-  - "We're building the analytics infrastructure that big mobile publishers have in-house — for everyone else"
-  - "Warehouse-native, no data movement: lower cost, better security, user-level granularity"
-  - "Domain knowledge woven into the data models, not just a generic BI tool"
-  - "Clear DACH beachhead with a globally relevant product (mobile app economy is borderless)"
-  - "Two complementary founders covering business, product, full-stack, data, and ML"
-  - "Pilot with active customer, second onboarding, third in pipeline"
-  - "Target €30K MRR by July"
+  - "Lupe is the AI Data Teammate for mobile growth — enabling SMB studios to operate with the analytical power of a 10-person data and growth team, without the headcount"
+  - "We unify attribution, marketing, and product data into a single source of truth, then layer deterministic, auditable AI on top"
+  - "Lupe does NOT generate SQL — it enforces truth through a verified semantic layer built on user-level data"
+  - "One definition of revenue, ROAS, and LTV everywhere — fully auditable answers that survive board scrutiny"
+  - "No existing solution unifies user-level attribution + product behavior + marketing spend + AI-ready semantic definitions"
+  - "Founded by Kostas & Claudia — 6 years building data systems for mobile gaming, previously built analytics infrastructure at Popcore supporting its acquisition by Zynga (Take-Two Interactive)"
+  - "Current MRR €4K, 1 paying customer (active pilot), target €30K MRR by July"
+  - "Raising €1.3M seed for 12 months runway"
 
 narrative_elevator_pitch: |
-  Mobile developers spend millions on user acquisition across Facebook, TikTok,
-  and Applovin — but they're flying blind. Campaign data is fragmented across
-  platforms, reporting is manual, and by the time insights surface, budgets have
-  already been wasted.
+  Mobile studios run on fragmented, conflicting data. Facebook, TikTok, AppLovin
+  all claim credit. MMPs track attribution. Product tools track engagement.
+  Finance asks for revenue truth. Dashboards are easy to build — reliable answers
+  are not.
 
-  Big companies like Supercell or King solve this with 10-person analytics teams
-  and custom infrastructure. Everyone else is stuck with spreadsheets and gut feel.
+  Studios that spend at scale solve this with large in-house data teams.
+  SMBs compete against them without the people, time, or budget.
 
-  Lupe Analytics gives every mobile developer the analytics infrastructure of a
-  top publisher. We create a single source of truth directly in their data
-  warehouse — no data movement, no overhead. On top, we layer data models with
-  deep domain knowledge and AI that surfaces what's working, what's not, and
-  what to do next.
+  Lupe gives every mobile studio the analytical power of the best-in-class teams
+  — without hiring one. We create a single source of truth directly in their data
+  warehouse, enforce it through a verified semantic layer, and layer deterministic
+  AI on top. No guessing how metrics should be calculated — one definition of
+  revenue, ROAS, and LTV everywhere.
 
-  We're running a pilot with an active customer, just onboarded a second customer,
-  and have a third in our pipeline. Our target is €30K MRR by July.
+  This approach was not feasible until now. We are pre-scale, not pre-product.
 
 preferred_moves:
   - "Ask calibrated questions to uncover decision process"
   - "Use labeling/mirroring on objections"
   - "Bridge back to traction and next steps"
   - "Proactively raise Adverity differentiation before Julian does"
+  - "When asked 'what do you do' — lead with the problem (fragmented data, no truth), then the breakthrough (semantic layer, deterministic AI)"
+  - "When asked about AI — emphasize 'we do NOT generate SQL, we enforce truth' to differentiate from generic AI tools"
 
 special_context:
+  product_overview: |
+    Lupe is an agentic analytics platform with three interfaces:
+    - Lupe Console: dashboards, data models, configuration
+    - AI Assistant: ask questions in natural language, get charts, reports, and written insights
+    - Slack Bot: insights, alerts, and root-cause analysis where teams already work
+    Behind the scenes, autonomous agents forecast LTV/ROAS, monitor performance,
+    detect anomalies, and recommend concrete budget actions.
+
+  use_cases: |
+    What customers use Lupe for:
+    - Ads Co-Pilot: scale winners, cut losers, protect spend
+    - AI Q&A: "What changed yesterday?" answered in seconds
+    - Auto Reporting: daily & weekly exec summaries, one shared narrative
+    - Deterministic Alerting: math-based alerts, not model guesses
+    From insight → explanation → action, in one system.
+
+  the_breakthrough: |
+    Lupe does not generate SQL. It enforces truth.
+    Instead of letting AI "guess" how metrics should be calculated, Lupe routes
+    every question through a verified semantic layer built on user-level data.
+    Result: one definition of revenue, ROAS, and LTV everywhere. Fully auditable
+    answers that survive board scrutiny. AI that can be trusted with real money decisions.
+
+  why_we_win: |
+    No existing solution unifies: user-level attribution, product behavior,
+    marketing spend, and AI-ready semantic definitions. Competitors solve pieces
+    of the problem. Lupe replaces the entire analytics decision layer — without
+    requiring a data team.
+
+  the_ask: |
+    Raising €1.3M Seed for 12 months runway.
+    Focus: complete first paid pilots, lock multi-tenant architecture, scale GTM in Europe.
+    Milestones: 10+ paying studios, €30K+ MRR, clear PMF signal in SMB mobile publishers.
+
+  traction: |
+    Current MRR: €4K. Paying customers: 1 (active pilot). Target MRR Jul 2025: €30K.
+    Team: 2 founders. We are pre-scale, not pre-product.
+
+  team_background: |
+    Founded by Kostas & Claudia, who spent six years building data systems for
+    mobile gaming companies. Previously built the analytics infrastructure at
+    Popcore, supporting its acquisition by Zynga (Take-Two Interactive).
+    We combine: deep mobile adtech expertise, production-grade data engineering,
+    speed of execution from operators, not consultants.
+
   adverity_differentiation: |
     42CAP has Adverity in their portfolio. When this comes up:
     "Adverity solves the data plumbing problem — getting marketing data into
@@ -84,5 +132,8 @@ special_context:
   tough_question_responses:
     runway_question: "We are focused on revenue — the pilot is our #1 priority. But we're also having smart conversations with investors who understand the space."
     valuation_question: "Marketing analytics is a €12B market by 2030. If we nail warehouse-native + AI for mobile, expansion into e-commerce, gaming, and fintech apps is natural."
-    unfair_advantage: "Deep domain expertise in mobile UA + technical depth (Snowflake, dbt, multi-agent AI). We've built what would take a competitor 6-12 months to replicate."
+    unfair_advantage: "Six years building analytics for mobile gaming, including the data infrastructure behind Popcore's acquisition by Zynga. Deep domain expertise in mobile UA + technical depth (Snowflake, dbt, multi-agent AI). We've built what would take a competitor 6-12 months to replicate."
     why_now: "Privacy changes (ATT, SKAdNetwork) broke traditional attribution. Companies are rebuilding analytics around first-party, user-level data — exactly what we enable."
+    why_not_just_bi_tool: "Dashboards are easy to build. Reliable answers are not. Generic BI tools let you query data — they don't enforce truth. Lupe's semantic layer guarantees one definition of revenue, ROAS, LTV everywhere. That's the difference between a dashboard and a decision system."
+    what_about_ai_competitors: "Most AI analytics tools generate SQL from natural language — that's a parlor trick. If the underlying data is wrong or undefined, the AI confidently gives wrong answers. We enforce truth first, then let AI operate on verified definitions. Deterministic, auditable, trustworthy."
+    only_one_customer: "We are pre-scale, not pre-product. The product is live, the pilot is paying, and we're onboarding more. We chose to go deep with one customer to nail the value prop before scaling."
