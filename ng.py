@@ -55,7 +55,7 @@ class NGSession:
             self._audio,
             model_size=self._whisper_model,
             window_seconds=12,
-            interval=1.5,
+            interval=0.5,
         )
         self._whisper.start()
         print("[NG] Whisper context extraction started")
