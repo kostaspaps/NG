@@ -3,11 +3,12 @@ name: "VC Pitch — Engenesis Ventures (Ariya Chittasy)"
 mode: VC_PITCH
 
 goals:
-  primary: "Get accepted into Engenesis Ventures portfolio or partnership program"
+  primary: "Evaluate whether Engenesis' services-for-equity model actually adds value for Lupe"
   secondary:
+    - "Understand exactly what services they provide and whether we need them (we already have strong product + engineering)"
+    - "Assess their B2B SaaS experience and investor network — these are the only things that matter to us"
     - "Position Lupe as a scalable tech venture, not a services business"
-    - "Demonstrate product-market fit traction and clear growth trajectory"
-    - "Explore whether their venture builder model (services + equity) fits our needs"
+    - "Do NOT agree to anything on this call — gather information only"
 
 constraints:
   do_not_reveal:
@@ -60,13 +61,17 @@ preferred_moves:
 
 special_context:
   venture_builder_model: |
-    Engenesis is NOT a traditional VC fund — they are a venture builder.
-    They operate on two models:
-    1. Equity participation: they take equity and provide hands-on building support
-    2. Fee-for-service: paid consulting/dev/marketing services ($3,900 AUD program)
+    Engenesis is NOT a traditional VC fund and NOT a capital investment fund —
+    they are a venture builder. They do NOT inject cash.
+    Their model: they take equity stakes in exchange for providing venture-building
+    services (strategy, product design, software development, marketing).
+    Typically they cover ~50% of the cost of their services in exchange for equity
+    at your current valuation. So it's a services-for-equity swap, not a cash injection.
     Be clear about what WE need: likely their network, go-to-market support,
     and investor introductions — NOT their tech/dev services (we have strong
     technical co-founders). Frame it as partnership, not dependency.
+    Key risk: if their services don't match what we actually need (we already
+    have strong product + engineering), the equity cost may not be worth it.
 
   investor_background: |
     Ariya Chittasy is Director of Engenesis Ventures. Entrepreneur with 8 years
@@ -92,11 +97,12 @@ special_context:
     This is an opportunity: we bring a new vertical they don't have.
 
   questions_for_ariya:
+    - "Do you have experience working with B2B SaaS companies specifically? What does your track record look like there?"
+    - "Walk me through a typical cooperation — what's the timeline, what equity stake, and what services do you actually deliver?"
+    - "How do you connect your portfolio companies to investors? What does your investor network look like?"
     - "You've worked with 800+ startups — what patterns do you see in the ones that break through from MVP to scale?"
-    - "How does the equity participation model work in practice? What does a typical partnership look like?"
     - "Your portfolio spans 53+ countries. For a B2B product targeting mobile developers, what go-to-market approach has worked best?"
-    - "The Genesis Framework sounds interesting. How does it apply to deep-tech / data-intensive ventures like ours?"
-    - "What's the most common mistake you see European founders make when expanding beyond their home market?"
+    - "The 50% services-for-equity model — how do you determine the valuation, and what happens if we only need a subset of your services?"
 
   tough_question_responses:
     why_not_self_funded: "We are revenue-focused — the pilot is our #1 priority. But the right partner accelerates go-to-market and opens doors that would take us 12+ months to open alone."
@@ -104,3 +110,5 @@ special_context:
     small_team: "Two founders covering business, product, full-stack, data, and ML. We've built in 6 months what would take a 5-person team a year. We're looking for a partner to accelerate distribution, not engineering."
     why_engenesis: "Your global network across 45+ countries and hands-on venture building experience is exactly what we need to go from DACH to global. Plus, no one in your portfolio does what we do — we'd be a new vertical."
     european_market: "DACH is our beachhead — Germany is growing fastest in Europe at 18.5% CAGR for marketing analytics. But mobile UA is inherently global. The product works anywhere there are app developers spending on campaigns."
+    why_give_equity: "We'd only consider equity if the value delivered clearly exceeds what we'd pay in cash. We need to understand exactly what services you'd provide, what the timeline looks like, and how your investor network translates into concrete introductions."
+    dont_need_dev: "We have two deeply technical co-founders covering full-stack, data engineering, ML, and product. We've built everything ourselves in 6 months. We don't need development services — if anything, we need go-to-market and investor access."

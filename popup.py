@@ -153,7 +153,7 @@ class CoachPopup:
         container.pack(fill="both", expand=True, padx=1, pady=1)
 
         # 1. Title bar ───────────────────────────────────────────────────────
-        title_frame = tk.Frame(container, bg=_BG_ACCENT, height=38)
+        title_frame = tk.Frame(container, bg=_BG_ACCENT, height=36)
         title_frame.pack(fill="x")
         title_frame.pack_propagate(False)
 
@@ -161,7 +161,7 @@ class CoachPopup:
         self._title_label = tk.Label(
             title_frame,
             text=display_name,
-            font=("Helvetica", 14, "bold"),
+            font=("Helvetica", 13, "bold"),
             bg=_BG_ACCENT,
             fg=_TEXT,
             anchor="w",
@@ -182,7 +182,7 @@ class CoachPopup:
         self._status_label = tk.Label(
             status_frame,
             text="ON",
-            font=("Helvetica", 11),
+            font=("Helvetica", 10),
             bg=_BG_ACCENT,
             fg=_GREEN,
         )
@@ -192,7 +192,7 @@ class CoachPopup:
         close_btn = tk.Label(
             title_frame,
             text="\u2715",
-            font=("Helvetica", 15),
+            font=("Helvetica", 14),
             bg=_BG_ACCENT,
             fg=_TEXT_DIM,
             padx=8,
@@ -373,7 +373,7 @@ class CoachPopup:
         self._copied_label = tk.Label(
             self.root,
             text="Copied!",
-            font=("Helvetica", 13, "bold"),
+            font=("Helvetica", 12, "bold"),
             bg=_COPIED_BG,
             fg="#ffffff",
             padx=10,
