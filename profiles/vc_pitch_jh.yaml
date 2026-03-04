@@ -1,0 +1,140 @@
+id: vc_pitch_jh
+name: "Deal Negotiation — Johannes Heinze (Popcore / Angel)"
+mode: DEAL_NEGOTIATION
+
+goals:
+  primary: "Close investment terms with Johannes — amount, valuation, structure"
+  secondary:
+    - "Maximise valuation while keeping Johannes enthusiastic and committed"
+    - "Secure strategic value beyond capital — intros to gaming network, advisory"
+    - "Avoid giving away too much equity or agreeing to unfavourable terms on the spot"
+    - "If he lowballs, anchor high and negotiate to a fair middle"
+
+constraints:
+  do_not_reveal:
+    - "Exact remaining runway or burn rate — keep it vague ('we're well-positioned')"
+    - "Other investor conversations details — only say 'we're in active conversations'"
+    - "Desperation or urgency around closing — stay calm, you have options"
+    - "Exact cap table breakdown unless necessary for the deal"
+  do_not_commit:
+    - "Final valuation on this call — say 'let's align on the range and formalise offline'"
+    - "Board seat without discussing with Claudia"
+    - "Exclusive deal or right of first refusal"
+    - "Any side terms (advisory shares, special rights) without sleeping on it"
+    - "Discount or special pricing on the product for his portfolio companies as part of the deal"
+
+tone:
+  default: "warm but firm — friends negotiating, not adversaries. Confident, never needy."
+  if_skeptical: "grounded, data-driven — remind him of shared history and market reality"
+  if_aggressive: "calm, hold your ground — 'I appreciate the directness, here's how we see it'"
+  if_lowball: "acknowledge, reframe — 'I hear you, but here's what the market and our traction support'"
+
+key_points:
+  - "We're raising €1.3M seed at a €6M pre-money valuation"
+  - "Johannes already knows the product and the team — this is about terms, not convincing"
+  - "His investment is strategic: domain expertise + gaming network + credibility signal"
+  - "We have other conversations active — this isn't a take-it-or-leave-it, but we're moving"
+  - "Angel checks we're looking for: €50K–200K range per angel"
+  - "We value smart money over just money — his involvement is worth more than the cheque"
+
+narrative_elevator_pitch: |
+  Johannes, you know what we do and you've seen it work. This conversation is
+  about whether you want to be part of building the company around it.
+
+  We're raising €1.3M seed at €6M pre-money. We're looking for angels who bring
+  more than capital — domain expertise, network, credibility. You tick every box.
+
+  The question isn't whether Lupe works — you've seen that. The question is how
+  fast we can scale it, and that's what this round is for.
+
+preferred_moves:
+  - "Let Johannes name his number first if possible — 'What level of involvement are you thinking about?'"
+  - "If he names a low valuation, anchor back: 'We're seeing €6M pre-money in our conversations. Here's why that's justified...'"
+  - "If he pushes for more equity, trade for strategic value: 'If you're coming in at X, what does your involvement look like beyond capital?'"
+  - "Use silence after stating your position — don't fill the gap"
+  - "Mirror his words back: 'So when you say the valuation feels high, what specifically are you comparing it to?'"
+  - "If stuck on price, shift to structure: 'Let's talk about what the deal looks like overall — SAFE, convertible note, priced round?'"
+  - "Never negotiate against yourself — if he's quiet, wait"
+  - "If he tries to anchor low, label it: 'It sounds like you're looking for early-stage pricing on a company that already has a live product and paying customers'"
+  - "If Claudia is speaking, let her reinforce conviction and product vision — show united front on terms"
+  - "Close with next steps, not open loops: 'Let's agree on the range today and have the paperwork ready by Friday'"
+
+special_context:
+  deal_parameters: |
+    KNOW YOUR NUMBERS:
+    - Total raise: €1.3M seed
+    - Pre-money valuation target: €6M (firm floor: €5M, walk-away below €4.5M)
+    - Instrument preference: SAFE note or priced equity round
+    - Angel ticket range: €50K–200K per angel
+    - Lead investor: still being finalised — Johannes could be a strong signal investor
+    - Dilution budget: ~18-20% this round maximum
+    - Use of funds: engineering (50%), GTM (30%), ops (20%)
+
+  negotiation_anchors: |
+    WHY €6M PRE-MONEY IS JUSTIFIED:
+    - Live product, paying customer, not a slide deck
+    - Team built and shipped the analytics infra behind a €XX M acquisition (Popcore→Zynga)
+    - €12B TAM in marketing analytics by 2030
+    - Warehouse-native + AI positioning is where the market is moving
+    - Strong technical moat: semantic layer + multi-agent AI, 6-12 months ahead
+    - Current MRR €4K with clear path to €30K by July
+    - European seed rounds at this stage commonly €5-8M pre-money
+
+  deal_structure_options: |
+    PREFERRED: SAFE note with valuation cap at €6M
+    - Simple, fast, founder-friendly
+    - No board seat, standard pro-rata rights
+    - MFN clause if doing multiple SAFEs
+
+    ACCEPTABLE: Priced seed round at €6M pre-money
+    - Standard seed terms (1x non-participating liquidation preference)
+    - No special veto rights or anti-dilution beyond standard
+    - Information rights, pro-rata rights for next round
+
+    AVOID:
+    - Convertible note with interest (unnecessary complexity)
+    - Discount-only notes without cap (misaligned incentives)
+    - Board seat for angel-size check
+    - Milestone-based tranches (signals distrust)
+
+  investor_background: |
+    Johannes Heinze is Co-Founder of Popcore, acquired by Rollic/Zynga (Take-Two
+    Interactive) in November 2022. Co-founded with brother Thomas Heinze.
+    Berlin-based, Zeppelin University (2005-2008). German native, fluent English.
+    Post-exit founder — likely investing personal capital.
+    IMPORTANT: He already knows the Lupe product and team from Popcore days.
+    No need to re-pitch — go straight to deal terms and strategic fit.
+    His exit likely gave him significant personal liquidity — €50-200K angel
+    check is very reasonable for a post-exit founder.
+
+  popcore_leverage: |
+    USE SPARINGLY BUT POWERFULLY:
+    Johannes saw firsthand what your analytics infrastructure enabled at Popcore.
+    This is not hypothetical value — it's proven. When negotiating valuation:
+    "The system we built contributed to the metrics that made Popcore attractive
+    to Zynga. We're now productising that for every studio. €6M pre-money is
+    fair for a team with this track record and a live product."
+
+  tactical_responses:
+    too_expensive: "I understand. But consider — we're not a team with an idea. We have a live product, a paying customer, and the track record from Popcore. €6M pre-money reflects that. What would make this feel right for you?"
+    want_more_equity: "We're mindful of dilution at this stage. But if you're looking for a larger role, let's talk about what strategic involvement looks like — advisory, intros, co-selling into your network. That's worth more than extra points."
+    need_to_think: "Absolutely. Let's align on the range today so when you're ready, we can move fast. We have other conversations progressing and want to make sure you have priority."
+    want_board_seat: "At the angel stage, we're keeping the board lean — just founders. But we'd love to have you as a formal advisor with regular check-ins. That gives you visibility without the overhead."
+    what_about_other_investors: "We're in active conversations with a few funds and angels. You'd be the first with deep domain overlap — that's valuable signal for the round. Early commitment helps us close faster."
+    want_discount: "We're running a clean round — same terms for everyone. What we can offer is priority allocation and deeper strategic involvement because of our history."
+    how_will_you_spend_it: "50% engineering — we're building the multi-agent AI layer. 30% GTM — sales in DACH and UK. 20% ops. Every euro goes to product and customers."
+    what_if_you_dont_raise: "We're revenue-generating and capital-efficient. We can extend runway, but raising now lets us capture the market window. Privacy changes rewired the industry — studios are rebuilding analytics now, not in two years."
+
+  questions_for_johannes:
+    - "What ticket size are you comfortable with for angel investments?"
+    - "Do you prefer SAFEs or priced rounds at this stage?"
+    - "Beyond capital, how hands-on do you want to be — intros, advisory, product feedback?"
+    - "Is Thomas also interested, or is this your personal investment?"
+    - "What would make you want to move quickly on this?"
+    - "Who else in your network should we be talking to?"
+
+  closing_moves:
+    - "So we're aligned on the range — shall we say €[X] on a SAFE at €6M cap? I can have the docs to you by Friday."
+    - "Johannes, you know us, you know the product. What's holding you back from committing today?"
+    - "If the terms work, I'd love to have you as one of our first angels. Your name on the cap table sends a strong signal."
+    - "Let's not overthink this — you've seen what we can build. The question is just the right structure. What works for you?"

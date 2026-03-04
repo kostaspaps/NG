@@ -15,4 +15,5 @@ See `ng.md` Section 8 for the full schema. Key fields:
 
 ## Available profiles
 - `vc_pitch_42cap.yaml` — 42CAP pitch with Julian von Fischer context, Adverity differentiation, tough question responses
+- `vc_pitch_jh.yaml` — Johannes Heinze (Popcore co-founder, angel/strategic investor). Leverages shared Popcore history — Kostas & Claudia built analytics infra there before Zynga acquisition
 - `vc_pitch_lupe.yaml` — Generic Lupe Analytics VC pitch
